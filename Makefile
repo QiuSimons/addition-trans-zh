@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=addition-trans-zh
 PKG_VERSION:=1.1
-PKG_RELEASE:=51
+PKG_RELEASE:=52
 PKG_LICENSE:=GPLv3
 PKG_LICENSE_FILES:=LICENSE
 
@@ -35,15 +35,14 @@ define Build/Compile
 endef
 
 define Package/addition-trans-zh/install
-
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/tools
-	$(INSTALL_DATA) ./status/status.lua $(1)/usr/lib/lua/luci/tools/
 	$(INSTALL_BIN) ./files/zzz-default-settings $(1)/etc/uci-defaults/99-default-settings
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
-	po2lmo ./i18n/default.zh-hans.po $(1)/usr/lib/lua/luci/i18n/default.zh-hans.lmo
-	po2lmo ./i18n/more.zh-hans.po $(1)/usr/lib/lua/luci/i18n/more.zh-hans.lmo
-	po2lmo ./i18n/sqm.zh-hans.po $(1)/usr/lib/lua/luci/i18n/sqm.zh-hans.lmo
+	po2lmo ./i18n/default.zh-cn.po $(1)/usr/lib/lua/luci/i18n/default.zh-cn.lmo
+	po2lmo ./i18n/more.zh-cn.po $(1)/usr/lib/lua/luci/i18n/more.zh-cn.lmo
+	po2lmo ./i18n/sqm.zh-cn.po $(1)/usr/lib/lua/luci/i18n/sqm.zh-cn.lmo
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/tools
+	$(INSTALL_DATA) ./status/status.lua $(1)/usr/lib/lua/luci/tools/status.lua
 endef
 
 $(eval $(call BuildPackage,addition-trans-zh))
