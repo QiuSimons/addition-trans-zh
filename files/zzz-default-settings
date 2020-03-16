@@ -13,4 +13,6 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 rm -rf /tmp/luci-modulecache/
 rm -f /tmp/luci-indexcache
 
+ln -sf /sbin/ip /usr/bin/ip
+
 exit 0
