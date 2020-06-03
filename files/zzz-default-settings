@@ -21,6 +21,8 @@ sed -i '/openwrt_telephony/ { s/snapshots/releases\/19.07.3/g; }' /etc/opkg/dist
 sed -i '/natelol/d' /etc/opkg/distfeeds.conf
 sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/lede,g' /etc/opkg/distfeeds.conf
 
+sed -i 's,redirect_https\t1,redirect_https\t0,g' /etc/config/uhttpd
+
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
