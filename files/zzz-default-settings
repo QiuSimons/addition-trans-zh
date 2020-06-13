@@ -39,4 +39,6 @@ opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
 
+echo "e" > /proc/irq/166/smp_affinity
+
 exit 0
