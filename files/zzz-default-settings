@@ -14,10 +14,10 @@ sed -i "s/'cbid.shadowsocksr.'/'widget.cbid.shadowsocksr.'/g" /usr/lib/lua/luci/
 
 sed -i 's/0/1/g' /etc/config/irqbalance
 
-sed -i '/openwrt_luci/ { s/snapshots/releases\/19.07.3/g; }' /etc/opkg/distfeeds.conf
-sed -i '/openwrt_packages/ { s/snapshots/releases\/19.07.3/g; }' /etc/opkg/distfeeds.conf
-sed -i '/openwrt_routing/ { s/snapshots/releases\/19.07.3/g; }' /etc/opkg/distfeeds.conf
-sed -i '/openwrt_telephony/ { s/snapshots/releases\/19.07.3/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_luci/ { s/snapshots\/targets\/rockchip\/armv8/releases\/packages-19.07\/aarch64_generic/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_packages/ { s/snapshots\/targets\/rockchip\/armv8/releases\/packages-19.07\/aarch64_generic/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_routing/ { s/snapshots\/targets\/rockchip\/armv8/releases\/packages-19.07\/aarch64_generic/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_telephony/ { s/snapshots\/targets\/rockchip\/armv8/releases\/packages-19.07\/aarch64_generic/g; }' /etc/opkg/distfeeds.conf
 sed -i '/natelol/d' /etc/opkg/distfeeds.conf
 sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/lede,g' /etc/opkg/distfeeds.conf
 
