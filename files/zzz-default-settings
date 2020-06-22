@@ -19,8 +19,9 @@ sed -i '/openwrt_telephony/ { s/snapshots\/packages/releases\/packages-19.07/g; 
 sed -i '/natelol/d' /etc/opkg/distfeeds.conf
 sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/lede,g' /etc/opkg/distfeeds.conf
 
-sed -i "s,option redirect_https '1',option redirect_https '0',g" /etc/config/uhttpd
-sed -i "s,option rfc1918_filter '1',option rfc1918_filter '0',g" /etc/config/uhttpd
+uci set uhttpd.main.rfc1918_filter=0
+uci set uhttpd.main.redirect_https=0
+uci commit uhttpd
 
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
 
