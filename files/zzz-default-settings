@@ -23,6 +23,9 @@ uci set uhttpd.main.rfc1918_filter=0
 uci set uhttpd.main.redirect_https=0
 uci commit uhttpd
 
+uci set network.globals.packet_steering=1
+uci commit network
+
 echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | uniq  > /tmp/tmp_hosts && cat /tmp/tmp_hosts > /etc/hosts
 
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
