@@ -1057,4 +1057,4 @@ msgid "SFE flow offloading"
 msgstr "SFE 流量分载"
 
 msgid "SFE based offloading for Routing/NAT. Restart recommended."
-msgstr "基于 SFE 的 Routing/NAT 分载。开关后建议重启。"
+msgstr "基于 SFE 的 Routing/NAT 分载（开/关后建议重启设备）"
