@@ -26,7 +26,9 @@ uci commit uhttpd
 uci set network.globals.packet_steering=1
 uci commit network
 
-echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | uniq  > /tmp/tmp_hosts && cat /tmp/tmp_hosts > /etc/hosts
+echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | sort | uniq > /tmp/tmp_hosts && cat /tmp/tmp_hosts > /etc/hosts
+
+wget -P /tmp "https://raw.githubusercontent.com/QiuSimons/Others/master/blacklist-ip.conf" && cat /tmp/blacklist-ip.conf >> "/etc/smartdns/blacklist-ip.conf" && cat "/etc/smartdns/blacklist-ip.conf" | sort | uniq > /tmp/tmp_blacklist-ip.conf && cat /tmp/tmp_blacklist-ip.conf > "/etc/smartdns/blacklist-ip.conf"
 
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
 
