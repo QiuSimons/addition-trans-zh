@@ -10,7 +10,8 @@ uci commit system
 sed -i 's/local ucic = uci.cursor()/local ucic = luci.model.uci.cursor()/g' /usr/share/shadowsocksr/subscribe.lua
 sed -i "s/'cbid.shadowsocksr.'/'widget.cbid.shadowsocksr.'/g" /usr/lib/lua/luci/view/shadowsocksr/ssrurl.htm
 
-sed -i 's/0/1/g' /etc/config/irqbalance
+uci set irqbalance.irqbalance.enabled=1
+uci commit irqbalance
 
 sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
 sed -i '/openwrt_packages/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
@@ -26,11 +27,23 @@ uci commit uhttpd
 uci set network.globals.packet_steering=1
 uci commit network
 
+uci set firewall.@zone[1].fullcone='1'
+uci commit firewall
+
+uci set upnpd.config.igdv1='1'
+uci set upnpd.config.enabled='1'
+uci del upnpd.config.enable_upnp
+uci del upnpd.config.enable_natpmp
+uci commit upnpd
+
 echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | sort | uniq > /tmp/tmp_hosts && cat /tmp/tmp_hosts > /etc/hosts
 
-wget -P /tmp "https://raw.githubusercontent.com/QiuSimons/Others/master/blacklist-ip.conf" && cat /tmp/blacklist-ip.conf >> "/etc/smartdns/blacklist-ip.conf" && cat "/etc/smartdns/blacklist-ip.conf" | sort | uniq > /tmp/tmp_blacklist-ip.conf && cat /tmp/tmp_blacklist-ip.conf > "/etc/smartdns/blacklist-ip.conf"
+#wget -P /tmp "https://raw.githubusercontent.com/QiuSimons/Others/master/blacklist-ip.conf" && cat /tmp/blacklist-ip.conf >> "/etc/smartdns/blacklist-ip.conf" && cat "/etc/smartdns/blacklist-ip.conf" | sort | uniq > /tmp/tmp_blacklist-ip.conf && cat /tmp/tmp_blacklist-ip.conf > "/etc/smartdns/blacklist-ip.conf"
 
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
+
+uci del dhcp.@dnsmasq[0].rebind_protection='1'
+uci commit dhcp
 
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
