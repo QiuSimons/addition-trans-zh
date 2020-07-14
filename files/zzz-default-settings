@@ -61,4 +61,6 @@ opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
 
+chinadnslist
+
 exit 0
