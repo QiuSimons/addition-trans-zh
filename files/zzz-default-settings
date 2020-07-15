@@ -43,6 +43,7 @@ echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | sor
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
 
 uci del dhcp.@dnsmasq[0].rebind_protection='1'
+uci set dhcp.@dnsmasq[0].noresolv='1'
 uci commit dhcp
 
 sed -i '/log-facility/d' /etc/dnsmasq.conf
