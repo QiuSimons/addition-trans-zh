@@ -56,7 +56,7 @@ sed -i 's,/opt,/overlay,g' /etc/config/dockerman
 
 #dnsmasq
 uci del dhcp.@dnsmasq[0].rebind_protection='1'
-uci set dhcp.@dnsmasq[0].noresolv='1'
+uci set dhcp.@dnsmasq[0].resolvfile='/tmp/resolv.conf.auto'
 uci commit dhcp
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
