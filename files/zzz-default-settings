@@ -78,4 +78,6 @@ opkg flag hold dnsmasq-full
 
 chinadnslist
 
+sync; echo 3 > /proc/sys/vm/drop_caches
+
 exit 0
