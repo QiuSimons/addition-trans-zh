@@ -43,7 +43,9 @@ uci set upnpd.config.igdv1='1'
 uci set upnpd.config.enabled='1'
 uci del upnpd.config.enable_upnp
 uci del upnpd.config.enable_natpmp
+uci set upnpd.config.external_iface='wan'
 uci commit upnpd
+/etc/init.d/miniupnpd restart
 
 #neteasemusic
 echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | sort | uniq > /tmp/tmp_hosts && cat /tmp/tmp_hosts > /etc/hosts
