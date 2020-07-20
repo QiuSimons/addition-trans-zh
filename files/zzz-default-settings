@@ -83,9 +83,10 @@ cat /tmp/resolv.conf.d/resolv.conf.auto | sort | uniq > /tmp/tmp_resolv
 cat /tmp/resolv.conf.auto | sort | uniq >> /tmp/tmp_resolv
 rm -rf /tmp/resolv.conf.d/resolv.conf.auto
 rm -rf /tmp/resolv.conf.auto
+rm -rf /tmp/resolv.conf
 mkdir -p /tmp/resolv.conf.d
-cat /tmp/tmp_resolv > /tmp/resolv.conf.d/resolv.conf.auto
-cat /tmp/tmp_resolv > /tmp/resolv.conf.auto
+cat /tmp/tmp_resolv | sort | uniq > /tmp/resolv.conf.d/resolv.conf.auto
+cat /tmp/tmp_resolv | sort | uniq > /tmp/resolv.conf.auto
 ln -sf /tmp/resolv.conf.d/resolv.conf.auto /tmp/resolv.conf
 /etc/init.d/dnsmasq restart
 
