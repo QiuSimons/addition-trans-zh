@@ -15,6 +15,7 @@ sed -i "s/'cbid.shadowsocksr.'/'widget.cbid.shadowsocksr.'/g" /usr/lib/lua/luci/
 #irq
 uci set irqbalance.irqbalance.enabled=1
 uci commit irqbalance
+/etc/init.d/irqbalance restart
 
 #feed
 sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
@@ -33,10 +34,12 @@ uci commit uhttpd
 #network
 uci set network.globals.packet_steering=1
 uci commit network
+/etc/init.d/network restart
 
 #firewall
 uci set firewall.@zone[1].fullcone='1'
 uci commit firewall
+/etc/init.d/firewall restart
 
 #upnp
 uci set upnpd.config.igdv1='1'
@@ -51,7 +54,7 @@ uci commit upnpd
 echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | sort | uniq > /tmp/tmp_hosts && cat /tmp/tmp_hosts > /etc/hosts
 
 #smartdns blacklist
-#wget -P /tmp "https://raw.githubusercontent.com/QiuSimons/Others/master/blacklist-ip.conf" && cat /tmp/blacklist-ip.conf >> "/etc/smartdns/blacklist-ip.conf" && cat "/etc/smartdns/blacklist-ip.conf" | sort | uniq > /tmp/tmp_blacklist-ip.conf && cat /tmp/tmp_blacklist-ip.conf > "/etc/smartdns/blacklist-ip.conf"
+wget -P /tmp "https://raw.githubusercontent.com/QiuSimons/Others/master/blacklist-ip.conf" && cat /tmp/blacklist-ip.conf >> "/etc/smartdns/blacklist-ip.conf" && cat "/etc/smartdns/blacklist-ip.conf" | sort | uniq > /tmp/tmp_blacklist-ip.conf && cat /tmp/tmp_blacklist-ip.conf > "/etc/smartdns/blacklist-ip.conf"
 
 #dockerman
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
@@ -78,17 +81,6 @@ opkg flag hold firewall
 opkg flag hold dnsmasq-full
 
 chinadnslist
-
-cat /tmp/resolv.conf.d/resolv.conf.auto | sort | uniq > /tmp/tmp_resolv
-cat /tmp/resolv.conf.auto | sort | uniq >> /tmp/tmp_resolv
-rm -rf /tmp/resolv.conf.d/resolv.conf.auto
-rm -rf /tmp/resolv.conf.auto
-rm -rf /tmp/resolv.conf
-mkdir -p /tmp/resolv.conf.d
-cat /tmp/tmp_resolv | sort | uniq > /tmp/resolv.conf.d/resolv.conf.auto
-cat /tmp/tmp_resolv | sort | uniq > /tmp/resolv.conf.auto
-ln -sf /tmp/resolv.conf.d/resolv.conf.auto /tmp/resolv.conf
-/etc/init.d/dnsmasq restart
 
 sync; echo 3 > /proc/sys/vm/drop_caches
 
