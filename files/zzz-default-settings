@@ -89,9 +89,6 @@ opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
 
-sleep 60
-chinadnslist
-
 sync; echo 3 > /proc/sys/vm/drop_caches
 
 exit 0
