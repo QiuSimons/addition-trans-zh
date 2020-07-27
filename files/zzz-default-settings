@@ -67,7 +67,6 @@ wget -P /tmp "https://raw.githubusercontent.com/QiuSimons/Others/master/blacklis
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
 
 #dnsmasq
-uci set dhcp.@dnsmasq[0].filteraaaa='1'
 uci set dhcp.lan.ra='hybrid'
 uci set dhcp.lan.ndp='hybrid'
 uci set dhcp.lan.dhcpv6='hybrid'
