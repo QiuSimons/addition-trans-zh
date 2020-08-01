@@ -60,6 +60,9 @@ echo "59.111.239.62 httpdns.n.netease.com" >> /etc/hosts && cat /etc/hosts | sor
 #chinalist
 echo "10 2 * * * chinadnslist &" >> /etc/crontabs/root && cat /etc/crontabs/root | sort | uniq > /tmp/tmp_cron_root && cat /tmp/tmp_cron_root > /etc/crontabs/root
 
+#openclash
+echo "/etc/openclash/" >> /etc/sysupgrade.conf && cat /etc/sysupgrade.conf | sort | uniq > /tmp/tmp_sysupgrade_conf && cat /tmp/tmp_sysupgrade_conf > /etc/sysupgrade.conf
+
 #dockerman
 sed -i 's,/opt,/overlay,g' /etc/config/dockerman
 
