@@ -14,6 +14,8 @@ sed -i "s/'cbid.shadowsocksr.'/'widget.cbid.shadowsocksr.'/g" /usr/lib/lua/luci/
 
 #irq
 uci set irqbalance.irqbalance.enabled=1
+uci set irqbalance.irqbalance.banirq='27'
+uci set irqbalance.irqbalance.banirq='163'
 uci commit irqbalance
 /etc/init.d/irqbalance restart
 
