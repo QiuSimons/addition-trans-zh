@@ -13,13 +13,12 @@ sed -i 's/local ucic = uci.cursor()/local ucic = luci.model.uci.cursor()/g' /usr
 sed -i "s/'cbid.shadowsocksr.'/'widget.cbid.shadowsocksr.'/g" /usr/lib/lua/luci/view/shadowsocksr/ssrurl.htm
 
 #irq
-uci set irqbalance.irqbalance.enabled=1
-#uci set irqbalance.irqbalance.banirq='27'
-#uci set irqbalance.irqbalance.banirq='163'
-echo "list banirq '163'" >> /etc/config/irqbalance
-echo "list banirq '27'" >> /etc/config/irqbalance
-cat /etc/config/irqbalance | sort | uniq > /tmp/tmp_irqbalance && cat /tmp/tmp_irqbalance > /etc/config/irqbalance
-uci commit irqbalance
+echo '
+config irqbalance 'irqbalance'
+option enabled '1'
+list banirq '163'
+list banirq '27'
+' > /etc/config/irqbalance
 /etc/init.d/irqbalance restart
 
 #feed
