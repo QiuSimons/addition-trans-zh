@@ -18,7 +18,7 @@ uci set irqbalance.irqbalance.enabled=1
 #uci set irqbalance.irqbalance.banirq='163'
 echo "list banirq '163'" >> /etc/config/irqbalance
 echo "list banirq '27'" >> /etc/config/irqbalance
-cat /etc/config/irqbalance | sort | uniq > /tmp/tmp_irqbalance && cat /tmp/tmp_irqbalance > /etc/sysupgrade.conf
+cat /etc/config/irqbalance | sort | uniq > /tmp/tmp_irqbalance && cat /tmp/tmp_irqbalance > /etc/config/irqbalance
 uci commit irqbalance
 /etc/init.d/irqbalance restart
 
