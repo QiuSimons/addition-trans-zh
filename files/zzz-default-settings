@@ -18,6 +18,8 @@ config irqbalance 'irqbalance'
 option enabled '1'
 list banirq '163'
 list banirq '27'
+list banirq '13'
+list banirq '14'
 ' > /etc/config/irqbalance
 /etc/init.d/irqbalance restart
 
