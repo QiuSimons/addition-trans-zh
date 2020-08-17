@@ -1061,3 +1061,10 @@ msgstr "基于 SFE 的 Routing/NAT 分载（开/关后建议重启设备）"
 
 msgid "DNS Settings"
 msgstr "DNS 设置"
+
+msgid "Packet Steering"
+msgstr "数据包引导"
+
+msgid ""
+"Enable packet steering across all CPUs. May help or hinder network speed."
+msgstr "启用所有CPU的数据包控制。 可能有助于或阻碍网络速度。"
