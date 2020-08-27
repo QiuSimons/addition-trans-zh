@@ -12,16 +12,10 @@ uci commit system
 sed -i 's/local ucic = uci.cursor()/local ucic = luci.model.uci.cursor()/g' /usr/share/shadowsocksr/subscribe.lua
 sed -i "s/'cbid.shadowsocksr.'/'widget.cbid.shadowsocksr.'/g" /usr/lib/lua/luci/view/shadowsocksr/ssrurl.htm
 
-#irq
-echo '
-config irqbalance 'irqbalance'
-option enabled '1'
-list banirq '163'
-list banirq '27'
-list banirq '13'
-list banirq '14'
-' > /etc/config/irqbalance
-/etc/init.d/irqbalance restart
+#HW-RNG
+uci set system.@rngd[0].enabled="1"
+uci set system.@rngd[0].device="/dev/hwrng"
+uci commit system
 
 #feed
 sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
